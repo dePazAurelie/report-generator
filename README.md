@@ -2,8 +2,8 @@
 ## About
 Report generator is a generator written in java the write and manager after meeting reports.
 
-##Specifications
-###V0 :
+## Specifications
+### V0 :
 * Mise en forme des données reçut pour les injecter dans le PDF.
 * Conversion des champs entrés vers un PDF.
   * récupération des champs.
@@ -12,10 +12,10 @@ Report generator is a generator written in java the write and manager after meet
 * GUI basic sans design contenant les champs.
 * Récupération des info, transformations et envois à la fonction PDF.
 
-###V1 :
+### V1 :
 Bonus Bonus
 
-##Champs de saisie
+## Champs de saisie
 * le nom du projet (mandatory)
   * (sous-titre)
 * numéro de la réunion (mandatory)
@@ -31,7 +31,7 @@ Bonus Bonus
   * Actions (+ personne associé) (non mandatory)
 * Notes (champs libre de saisie) (non mandatory)
 
-##Team :
+## Team :
 Aurelie
 Charles
 Valentin
