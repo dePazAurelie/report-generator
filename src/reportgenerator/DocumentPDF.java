@@ -6,15 +6,7 @@ import com.itextpdf.layout.element.Paragraph;
 
 import java.util.Date;
 
-import com.itextpdf.text.Anchor;
-import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.Chapter;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Section;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 
@@ -23,6 +15,15 @@ import com.itextpdf.text.pdf.PdfPTable;
 public class DocumentPDF {
     Document document;
     PdfDocument pdf;
+    private static String FILE = "c:/temp/FirstPdf.pdf";
+    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+            Font.BOLD);
+    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.NORMAL, BaseColor.RED);
+    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+            Font.BOLD);
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.BOLD);
 
     public DocumentPDF(PdfDocument pdf) {
         this.pdf = pdf;
@@ -32,6 +33,7 @@ public class DocumentPDF {
     public void initDocument() {
         Document document = new Document(pdf);
         document.add(new Paragraph("Bonjour!"));
+        document.addTitle("My first PDF");
         document.close();
     }
 
@@ -40,7 +42,7 @@ public class DocumentPDF {
     // Reader
     // under File -> Properties
     private static void addMetaData(Document document) {
-        document.addTitle("My first PDF");
+
         document.addSubject("Using iText");
         document.addKeywords("Java, PDF, iText");
         document.addAuthor("Lars Vogel");

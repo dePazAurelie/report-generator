@@ -195,3 +195,11 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/java,macos,windows,eclipse,intellij
+.idea/libraries/Maven__com_itextpdf_itextpdf_5_0_6.xml
+.idea/libraries/Maven__com_itextpdf_itextpdf_5_0_6.xml
+.idea/libraries/Maven__org_bouncycastle_bcmail_jdk14_1_38.xml
+.idea/libraries/Maven__org_bouncycastle_bcprov_jdk14_1_38.xml
+.idea/libraries/Maven__org_bouncycastle_bctsp_jdk14_1_38.xml
+.idea/workspace.xml
+report-generator.iml
+report-generator.iml
