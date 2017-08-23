@@ -8,8 +8,8 @@ public class linker {
     private String meetingNumber;
     private String date;
     private attendee host;
-    private ArrayList <attendee> attendees;
-    private ArrayList <topic> topics;
+    private ArrayList <attendee> attendees = new ArrayList<>();
+    private ArrayList <topic> topics = new ArrayList<>();
     private String notes;
 
     //getters & setters pour faire le lien entre le GUI et l'export. Respecte l'ordre des champs.
@@ -49,7 +49,7 @@ public class linker {
         return attendees;
     }
 
-    public void addAttendees(String firstName, String lastName, String mail, String status) {
+    public void addAttendees(String firstName, String lastName, String mail, boolean status) {
         attendees.add(new attendee(firstName, lastName, mail, status));
     }
 
