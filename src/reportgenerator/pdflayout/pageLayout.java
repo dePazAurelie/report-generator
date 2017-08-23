@@ -124,13 +124,14 @@ public class pageLayout {
 
     private void addLineSeparator(Paragraph paragraph) {
         LineSeparator line = new LineSeparator();
+        line.setLineColor(new BaseColor( 27, 163, 156, 200));
         line.setOffset(-10f);
         paragraph.add(line);
         addEmptyLine(paragraph, 1);
     }
 
-    private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 24, Font.NORMAL);
-    private static Font subFont = new Font(Font.FontFamily.HELVETICA, 16, Font.NORMAL);
+    private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 24, Font.NORMAL, new BaseColor( 27, 163, 156, 255));
+    private static Font subFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD, BaseColor.DARK_GRAY);
     private static Font smallBold = new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD);
     private static Font classic = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL);
     private static Font classicRed = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.RED);
