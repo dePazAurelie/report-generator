@@ -1,14 +1,16 @@
 package reportgenerator;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
-
 import java.util.Date;
-
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 
 
 
@@ -32,7 +34,11 @@ public class DocumentPDF {
 
     public void initDocument() {
         Document document = new Document(pdf);
-        document.add(new Paragraph("Bonjour!"));
+        try {
+            document.add(new Paragraph("Bonjour!"));
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
         document.addTitle("My first PDF");
         document.close();
     }
