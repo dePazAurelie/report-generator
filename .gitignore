@@ -221,3 +221,4 @@ buildNumber.properties
 .idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_3.xml
 .idea/compiler.xml
 .classpath
+com.report-generator.iml
