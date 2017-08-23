@@ -4,6 +4,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import reportgenerator.window.Window;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,5 +17,6 @@ public class main {
     	Document document = new Document(pdf);
     	document.add(new Paragraph("Hello World!"));
     	document.close();
+        Window window = new Window();
     }
 }
