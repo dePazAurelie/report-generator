@@ -49,7 +49,7 @@ public class linker {
         return attendees;
     }
 
-    public void addAttendees(String firstName, String lastName, String mail, boolean status) {
+    public void addAttendees(String firstName, String lastName, String mail, String status) {
         attendees.add(new attendee(firstName, lastName, mail, status));
     }
 
