@@ -1,10 +1,12 @@
 package reportgenerator;
 
-<<<<<<< HEAD
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
+import reportgenerator.pdfManager.linker;
 import reportgenerator.pdflayout.pageLayout;
 
 public class main {
@@ -21,13 +23,4 @@ public class main {
 			e.printStackTrace();
 		}
 	}
-=======
-import java.io.FileNotFoundException;
-
-public class main {
-
-    public static void main (String[] args) throws FileNotFoundException {
-
-    }
->>>>>>> beta
 }
