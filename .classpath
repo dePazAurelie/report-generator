@@ -16,5 +16,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/forms-7.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/io-7.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/kernel-7.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/layout-7.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/pdfa-7.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/pdftest-7.0.4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

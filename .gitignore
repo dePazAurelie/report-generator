@@ -23,4 +23,8 @@ hs_err_pid*
 /bin/
 /target/
 .DS_Store
+<<<<<<< HEAD
 src/.DS_Store
+=======
+.DS_Store
+>>>>>>> master
