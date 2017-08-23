@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="a2cdcda4-a8d2-4017-a12e-e336ad442c81" name="Default" comment="" />
+=======
+    <list default="true" id="a2cdcda4-a8d2-4017-a12e-e336ad442c81" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hello_world.pdf" afterPath="$PROJECT_DIR$/hello_world.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
+>>>>>>> 6830289b86ba50690018da3b548cad03fe6ee23d
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
