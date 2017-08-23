@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class linker {
 
     private String projectName;
-    private String projectNumber;
+    private String meetingNumber;
     private String date;
     private attendee host;
     private ArrayList <attendee> attendees;
@@ -21,12 +21,12 @@ public class linker {
         this.projectName = projectName;
     }
 
-    public String getProjectNumber() {
-        return projectNumber;
+    public String getMeetingNumber() {
+        return meetingNumber;
     }
 
-    public void setProjectNumber(String projectNumber) {
-        this.projectNumber = projectNumber;
+    public void setMeetingNumber(String meetingNumber) {
+        this.meetingNumber = meetingNumber;
     }
 
     public String getDate() {
@@ -41,7 +41,7 @@ public class linker {
         return host;
     }
 
-    public void setHost(String firstName, String lastName, String mail) {
+    public void addHost(String firstName, String lastName, String mail) {
         new attendee(firstName, lastName, mail);
         this.host = host;
     }
@@ -50,7 +50,7 @@ public class linker {
         return attendees;
     }
 
-    public void setAttendees(String firstName, String lastName, String mail, String status) {
+    public void addAttendees(String firstName, String lastName, String mail, String status) {
         attendees.add(new attendee(firstName, lastName, mail, status));
         this.attendees = attendees;
     }
@@ -60,8 +60,8 @@ public class linker {
     }
 
     //pas encore fait
-    public void setTopics() {
-
+    public void addTopics(String , String , String) {
+        attendees.add(new attendee(firstName, lastName, mail, status));
         this.topics = topics;
     }
 
