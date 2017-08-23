@@ -73,12 +73,12 @@ public class pageLayout {
         preface.add(new Paragraph("Sous-titre", subFont));
         addEmptyLine(preface, 1);
 
-        preface.add(new Paragraph("Organisateur : " + System.getProperty("user.name"), smallBold));
-        preface.add(new Paragraph( "email", smallBold));
+        preface.add(new Paragraph("Host : " + System.getProperty("user.name"), smallBold));
+        preface.add(new Paragraph( "E-mail : ", smallBold));
         addEmptyLine(preface, 1);
         preface.add(new Paragraph("Date : "+ new Date(), classic));
-        preface.add(new Paragraph("Durée : ", classic));
-        preface.add(new Paragraph("Lieu : ", classic));
+       // preface.add(new Paragraph("Durée : ", classic)); V2
+       // preface.add(new Paragraph("Lieu : ", classic)); V2
         addEmptyLine(preface, 2);
         document.add(preface);
     }
