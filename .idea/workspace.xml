@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2cdcda4-a8d2-4017-a12e-e336ad442c81" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hello_world.pdf" afterPath="$PROJECT_DIR$/hello_world.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
