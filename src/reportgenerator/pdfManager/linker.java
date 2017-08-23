@@ -42,8 +42,7 @@ public class linker {
     }
 
     public void addHost(String firstName, String lastName, String mail) {
-        new attendee(firstName, lastName, mail);
-        this.host = host;
+        this.host = new attendee(firstName, lastName, mail);
     }
 
     public ArrayList<attendee> getAttendees() {
@@ -52,7 +51,6 @@ public class linker {
 
     public void addAttendees(String firstName, String lastName, String mail, String status) {
         attendees.add(new attendee(firstName, lastName, mail, status));
-        this.attendees = attendees;
     }
 
     public ArrayList<topic> getTopics() {
@@ -60,9 +58,8 @@ public class linker {
     }
 
     //pas encore fait
-    public void addTopics(String , String , String) {
-        attendees.add(new attendee(firstName, lastName, mail, status));
-        this.topics = topics;
+    public void addTopics(String topic, String desicion, String outcome) {
+        topics.add(new topic(topic, desicion, outcome));
     }
 
     public String getNotes() {
