@@ -66,6 +66,9 @@ local.properties
 # User-specific stuff:
 .idea/**/workspace.xml
 .idea/**/topics.xml
+.idea/**/workspace.xml
+.idea/**/topics.xml
+.idea/**/tasks.xml
 .idea/dictionaries
 .idea
 
@@ -211,3 +214,6 @@ buildNumber.properties
 # End of https://www.gitignore.io/api/java,macos,windows,eclipse,intellij
 *.pdf
 com.report-generator.iml
+*.pdf
+com.report-generator.iml
+src/.DS_Store
