@@ -65,6 +65,9 @@ local.properties
 
 # User-specific stuff:
 .idea/**/workspace.xml
+.idea/**/topics.xml
+.idea/**/workspace.xml
+.idea/**/topics.xml
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea
@@ -209,5 +212,15 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.gitignore.io/api/java,macos,windows,eclipse,intellij
+<<<<<<< HEAD
 *.pdf
 com.report-generator.iml
+=======
+*.pdf
+com.report-generator.iml
+*.pdf
+com.report-generator.iml
+src/.DS_Store
+>>>>>>> origin/beta
+src/.DS_Store
+src/reportgenerator/main.java
