@@ -1,4 +1,4 @@
-package reportgenerator;
+package reportgenerator.pdflayout;
 
 public class HeaderFooterPageEvent {
 

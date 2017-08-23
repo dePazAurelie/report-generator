@@ -1,4 +1,4 @@
-package reportgenerator;
+package reportgenerator.pdflayout;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import java.util.Date;
@@ -15,9 +15,6 @@ import com.itextpdf.text.Phrase;
 
 
 public class DocumentPDF {
-    Document document;
-    PdfDocument pdf;
-    private static String FILE = "c:/temp/FirstPdf.pdf";
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
@@ -27,13 +24,12 @@ public class DocumentPDF {
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
             Font.BOLD);
 
-    public DocumentPDF(PdfDocument pdf) {
-        this.pdf = pdf;
-        initDocument();
+    public DocumentPDF(Document document) {
+        initDocument(document);
     }
 
-    public void initDocument() {
-        Document document = new Document(pdf);
+    public void initDocument(Document document) {
+        document.open();
         try {
             document.add(new Paragraph("Bonjour!"));
         } catch (DocumentException e) {
