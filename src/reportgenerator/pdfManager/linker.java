@@ -36,6 +36,7 @@ public class linker {
 
     public void setDate(String date) {
         this.date = date;
+        System.out.println(date);
     }
 
     public attendee getHost() {
