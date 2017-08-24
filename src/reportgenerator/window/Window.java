@@ -49,8 +49,14 @@ public class Window extends JFrame {
     JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
     JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
 
-    public void getdateofmeeting(linker link){
-        link.setDate(((Date) datePicker.getModel().getValue()).toString());
+    private void getdateofmeeting(linker link){
+        Object s = datePicker.getModel().getValue();
+        if (s == null) {
+            link.setDate(new Date().toString());
+        } else {
+            link.setDate(((Date) datePicker.getModel().getValue()).toString());
+        }
+        System.out.println(link.getDate());
     }
 
     //3 ligne : ****HOST****
