@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/java,macos,windows,eclipse,intellij
 
 ### Eclipse ###
@@ -66,6 +65,11 @@ local.properties
 
 # User-specific stuff:
 .idea/**/workspace.xml
+
+.idea/**/tasks.xml
+.idea/**/topics.xml
+.idea/**/workspace.xml
+.idea/**/topics.xml
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea
@@ -211,3 +215,21 @@ buildNumber.properties
 
 # End of https://www.gitignore.io/api/java,macos,windows,eclipse,intellij
 *.pdf
+com.report-generator.iml
+
+.idea/libraries/Maven__com_itextpdf_pdftest_7_0_4.xml
+.idea/libraries/Maven__com_itextpdf_pdftest_7_0_4.xml
+.idea/libraries/Maven__com_itextpdf_pdfa_7_0_4.xml
+.idea/libraries/Maven__com_itextpdf_layout_7_0_4.xml
+.idea/libraries/Maven__com_itextpdf_kernel_7_0_4.xml
+.idea/libraries/Maven__com_itextpdf_io_7_0_4.xml
+.idea/libraries/Maven__com_itextpdf_forms_7_0_4.xml
+.idea/libraries/Maven__ch_qos_logback_logback_core_1_1_3.xml
+.idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_3.xml
+.idea/compiler.xml
+.classpath
+*.pdf
+com.report-generator.iml
+beta-charles
+src/.DS_Store
+src/reportgenerator/main.java
