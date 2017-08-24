@@ -151,7 +151,7 @@ public class pageLayout {
 
     public pageLayout(linker link) {
         try {
-            String FILE = "c:/Users/Aurélie de Paz/Desktop/report-generator/test.pdf";
+            String FILE = "test.pdf";
             Document document = new Document(PageSize.A4);
             PdfWriter.getInstance(document, new FileOutputStream(FILE));
             document.open();
