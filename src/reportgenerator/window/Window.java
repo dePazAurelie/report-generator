@@ -19,6 +19,7 @@ import java.util.Properties;
 public class Window extends JFrame {
 
     boolean presence= false;
+    int cmpt = 0;
     JPanel panel = new JPanel();
 
     //1 ligne = Meeting informations
@@ -31,14 +32,23 @@ public class Window extends JFrame {
     //    link.setProjectName(txtprojectname.getText());
     //}
 
-    private void getTxtprojectname(linker link) {
-        link.setProjectName(txtprojectname.getText());
+    private void getTxtprojectname(linker link){
+        if (txtprojectname.getText().equals("") || txtprojectname.getText().equals("Enter a project")) {
+            txtprojectname.setText("Enter a project");
+            cmpt++;
+        } else {
+            link.setProjectName(txtprojectname.getText());
+        }
     }
 
     //****************************************************
     JTextField projectnamenumber = new JTextField(5);
-    public void getprojectnamenumber(linker link){
-        link.setMeetingNumber(projectnamenumber.getText());
+    private void getprojectnamenumber(linker link){
+        if (projectnamenumber.getText().equals("") || projectnamenumber.getText().equals("Enter a number")) {
+            projectnamenumber.setText("Enter a number");
+        } else {
+            link.setMeetingNumber(projectnamenumber.getText());
+        }
     }
 
     //2 ligne : meeting date
@@ -56,7 +66,6 @@ public class Window extends JFrame {
         } else {
             link.setDate(((Date) datePicker.getModel().getValue()).toString());
         }
-        System.out.println(link.getDate());
     }
 
     //3 ligne : ****HOST****
@@ -73,8 +82,25 @@ public class Window extends JFrame {
     JLabel hostmail = new JLabel("Mail :");
     JTextField jtfhostmail = new JTextField(20);
     //****************************************************
-    public void getjtfhostdetails(linker link){
-        link.addHost(jtfhostname.getText(), jtfhostfirstname.getText(), jtfhostmail.getText());
+    public void getjtfhostdetails(linker link) {
+        if (jtfhostname.getText().equals("") || jtfhostname.getText().equals("Enter a name")) {
+            jtfhostname.setText("Enter a name");
+            cmpt++;
+            if (jtfhostfirstname.getText().equals("") || jtfhostfirstname.getText().equals("Enter a name")) {
+                jtfhostfirstname.setText("Enter a name");
+                cmpt++;
+            }
+
+            if (jtfhostmail.getText().equals("") || jtfhostmail.getText().equals("Enter a e-mail")) {
+                jtfhostmail.setText("Enter a e-mail");
+                cmpt++;
+            }
+
+            if (cmpt == 0) {
+                link.addAttendees(jtfhostname.getText(), jtfhostfirstname.getText(), jtfhostmail.getText(), presence);
+                link.mergeAttendees();
+            }
+        }
     }
 
     //5 ligne : **ATTENDEES**
@@ -204,26 +230,26 @@ public class Window extends JFrame {
         createreport.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                cmpt = 0;
                 linker link = new linker();
-                    getTxtprojectname(link);
-                    getprojectnamenumber(link);
-                    getdateofmeeting(link);
-                    getjtfattendeedetails(link);
-                    getjtfhostdetails(link);
-                    getjtftopicsdetails(link);
-                    getnotes(link);
+                getTxtprojectname(link);
+                getprojectnamenumber(link);
+                getdateofmeeting(link);
+                getjtfattendeedetails(link);
+                getjtfhostdetails(link);
+                getjtftopicsdetails(link);
+                getnotes(link);
+                System.out.println(cmpt);
+
+                if (cmpt == 0) {
                     pageLayout layout = new pageLayout(link);
+                    System.out.println(cmpt);
+                }
             }
         });
-
-
         panel.setOpaque(false);
-
         add(panel);
         pack();
         setVisible(true);
-
-
-
     }
 }
