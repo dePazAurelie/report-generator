@@ -30,7 +30,6 @@ public class Window extends JFrame {
 
     boolean presence= false;
     int cmpt = 0;
-    JPanel panel = new JPanel();
 
     //1 ligne = Meeting informations
     JLabel ProjectName = new JLabel("Project Name: ");
@@ -60,11 +59,11 @@ public class Window extends JFrame {
     JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
     JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
 
-    public void getdateofmeeting(){
+    public void getdateofmeeting(linker link){
         String value = datePicker.getModel().getValue().toString();
         String date = value.substring(0, StringUtils.ordinalIndexOf(value, " ", 3));
       
-      Object s = datePicker.getModel().getValue();
+        Object s = datePicker.getModel().getValue();
         if (s == null) {
             link.setDate(new Date().toString());
         } else {
@@ -148,66 +147,6 @@ public class Window extends JFrame {
 
 
     public Window(){
-        this.setTitle("MY MEETING APP");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        panel.setLayout(new MigLayout());
-
-        //Première ligne = Meeting informations
-        panel.add(ProjectName,"split4");
-        panel.add(txtprojectname, "pushx, growx");
-
-
-        panel.add(number);
-        panel.add(projectnamenumber, "pushx, growx, wrap");
-
-        //Deuxieme ligne : meeting date
-        panel.add(meetingdate,"split2");
-        panel.add(datePicker,"wrap");
-
-        //troisieme ligne : ****HOST****
-        panel.add(host, "wrap");
-
-        //quatrieme ligne : host details
-        panel.add(hostname, "split6");
-        panel.add(jtfhostname,"pushx, growx");
-        panel.add(hostfirstname);
-        panel.add(jtfhostfirstname,"pushx, growx");
-        panel.add(hostmail);
-        panel.add(jtfhostmail, "pushx, growx, wrap");
-
-        //cinquieme ligne : attendees
-        panel.add(attendees, "wrap");
-
-        //sixieme ligne : attendees details
-        panel.add(attendeename, "split8");
-        panel.add(jtfattendeename,"pushx, growx");
-        panel.add(attendeefirstname);
-        panel.add(jtfattendeefirstname,"pushx, growx");
-        panel.add(attendeemail);
-        panel.add(jtfattendeemail, "pushx, growx");
-        panel.add(attendeepresence);
-        panel.add(jcbatteddeepresent, "pushx,wrap");
-
-        //7 ligne : ***Recap****
-        panel.add(recap, "wrap");
-
-        //8 ligne : ***Recap detail****
-        panel.add(new JScrollPane(topicarea), "split3");
-        topicarea.setText("Meeting topic");
-        panel.add(new JScrollPane(decisionarea));
-        decisionarea.setText("Decision");
-        panel.add(new JScrollPane(actionarea), "wrap");
-        actionarea.setText("Action");
-
-        //9 ligne : ***Notes****
-        panel.add(Notes,"wrap");
-
-        //10 ligne : ***Notes****
-        panel.add(new JScrollPane(Notesarea), "growx, wrap");
-
-        //11 ligne : ***Generate Report****
-        panel.add(createreport, "growx, wrap");
 
         jcbatteddeepresent.addActionListener(new ActionListener() {
             @Override
@@ -219,25 +158,8 @@ public class Window extends JFrame {
                 }
             }
         });
-
-        createreport.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                linker link = new linker();
-                    getTxtprojectname(link);
-                    getprojectnamenumber(link);
-                    getdateofmeeting(link);
-                    getjtfattendeedetails(link);
-                    getjtfhostdetails(link);
-                    getjtftopicsdetails(link);
-                    getnotes(link);
-                    pageLayout layout = new pageLayout(link);
-            }
-        });
       
                 setTitle("MY MEETING APP");
-                setSize(1000, 600);
-
 
                 setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 setLocationRelativeTo(null);
@@ -280,14 +202,18 @@ public class Window extends JFrame {
         attendeesplusplane.add(addmoreattendee,"pushx, wrap");
 
                 //sixieme ligne : attendees details
-        attendeespanel.add(new MyAttendee(), "wrap");
-        attendeespanel.add(new MyAttendee(), "wrap");
-        attendeespanel.add(new MyAttendee(), "wrap");
-        attendeespanel.add(new MyAttendee(), "wrap");
-        attendeespanel.add(new MyAttendee(), "wrap");
+        attendeespanel.add(attendeename, "split8");
+        attendeespanel.add(jtfattendeename,"pushx, growx");
+        attendeespanel.add(attendeefirstname);
+        attendeespanel.add(jtfattendeefirstname,"pushx, growx");
+        attendeespanel.add(attendeemail);
+        attendeespanel.add(jtfattendeemail, "pushx, growx");
+        attendeespanel.add(attendeepresence);
+        attendeespanel.add(jcbatteddeepresent, "pushx,wrap");
 
 
-                //7 ligne : ***Recap****
+
+        //7 ligne : ***Recap****
         meetingreveiwpluspanel.add(recap);
         meetingreveiwpluspanel.add(addmortopics,"pushx, wrap");
 
@@ -309,27 +235,24 @@ public class Window extends JFrame {
 
                  //11 ligne : ***Generate Report****
         noteplusreportcreation.add(createreport, "growx, wrap");
-        
 
-                jcbatteddeepresent.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String presence = "présent";
-                    }
-                });
+        createreport.addActionListener(new ActionListener() {
+            linker link = new linker();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getTxtprojectname(link);
+                getprojectnamenumber(link);
+                getdateofmeeting(link);
+                getjtfattendeedetails(link);
+                getjtfhostdetails(link);
+                getjtftopicsdetails(link);
+                getnotes(link);
 
-                createreport.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        getTxtprojectname();
-                        getprojectnamenumber();
-                        getdateofmeeting();
-                        getjtfattendeedetails();
-                        getjtfhostdetails();
-                        getjtftopicsdetails();
-                        getnotes();
-                    }
-                });
+                if (cmpt == 0) {
+                    pageLayout layout = new pageLayout(link);
+                }
+            }
+        });
 
                 addmoreattendee.addActionListener(e -> {
                     attendeespanel.add(new MyAttendee(), "wrap");
