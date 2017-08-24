@@ -19,6 +19,7 @@ public class pageLayout {
             addTitlePage(document, link);
             addPeople(document, link);
             addTopics(document, link);
+            addNotes(document, link);
         } catch (DocumentException e) {
             e.printStackTrace();
         }
@@ -33,15 +34,26 @@ public class pageLayout {
         Paragraph sectionTitle = new Paragraph("Topics :", subFont);
         addLineSeparator(sectionTitle);
         document.add(sectionTitle);
-/*
+
         for (int i = 0 ; i < link.getTopics().size() ; i++) {
             Paragraph topic = new Paragraph();
             topic.add(new Paragraph(link.getTopics().get(i).getTopic(), smallBold));
             topic.add(new Paragraph(link.getTopics().get(i).getDecision(), classic));
-            topic.add(new Paragraph(link.getTopics().get(i).getOutcome(), classicRed));
+            topic.add(new Paragraph(link.getTopics().get(i).getOutcome(), smallBold));
             addEmptyLine(topic, 1);
             document.add(topic);
-        }*/
+        }
+    }
+
+    private void addNotes(Document document, linker link) throws DocumentException {
+        Paragraph empty = new Paragraph();
+        addEmptyLine(empty, 1);
+        Paragraph sectionTitle = new Paragraph("Notes :", subFont);
+        addLineSeparator(sectionTitle);
+        document.add(empty);
+        document.add(sectionTitle);
+        Paragraph notes = new Paragraph(link.getNotes());
+        document.add(notes);
     }
 
     private void addPeople(Document document, linker link) throws DocumentException {
