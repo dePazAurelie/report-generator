@@ -88,6 +88,7 @@ public class pageLayout {
             cell.setBorder(NO_BORDER);
             cell.setRowspan(1);
             table.addCell(cell);
+            System.out.println(link.getAttendees().get(i).getFirstName());
         }
         document.add(table);
     }
@@ -146,7 +147,6 @@ public class pageLayout {
     private static Font subFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD, BaseColor.DARK_GRAY);
     private static Font smallBold = new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD);
     private static Font classic = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL);
-    private static Font classicRed = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.RED);
 
 
     public pageLayout(linker link) {

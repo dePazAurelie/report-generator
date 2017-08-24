@@ -6,6 +6,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import reportgenerator.pdfManager.linker;
+import reportgenerator.pdflayout.pageLayout;
 
 import javax.swing.*;
 import javax.swing.JFrame;
@@ -13,18 +14,14 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.Properties;
 
 public class Window extends JFrame {
 
     String presence= "";
-    linker link = new linker();
-    ImageIcon imageIcon = new ImageIcon("/Users/charles/Desktop/Formation Epitech/report-generator/src/Ressources/calming.gif"); // here your Image Path
+    ImageIcon imageIcon = new ImageIcon("c:/Users/Aurélie de Paz/Desktop/report-generator/src/reportgenerator/window/Ressources/calming.gif"); // here your Image Path
     JLabel background=new JLabel(imageIcon);
-
-    UtilDateModel model = new UtilDateModel();
-    JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
-    JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
 
     JPanel panel = new JPanel();
 
@@ -34,13 +31,13 @@ public class Window extends JFrame {
 
     //****************************************************
     JTextField txtprojectname = new JTextField(20);
-    public void getTxtprojectname(){
+    public void getTxtprojectname(linker link){
         link.setProjectName(txtprojectname.getText());
     }
 
     //****************************************************
     JTextField projectnamenumber = new JTextField(5);
-    public void getprojectnamenumber(){
+    public void getprojectnamenumber(linker link){
         link.setMeetingNumber(projectnamenumber.getText());
     }
 
@@ -48,9 +45,12 @@ public class Window extends JFrame {
     JLabel meetingdate = new JLabel("Meeting Date :");
 
     //****************************************************
-    JTextField dateofthemeeting = new JTextField(10);
-    public void getdateofmeeting(){
-        link.setDate(dateofthemeeting.getText());
+    UtilDateModel model = new UtilDateModel();
+    JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
+    JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
+
+    public void getdateofmeeting(linker link){
+        link.setDate(((Date) datePicker.getModel().getValue()).toString());
     }
 
     //3 ligne : ****HOST****
@@ -67,7 +67,7 @@ public class Window extends JFrame {
     JLabel hostmail = new JLabel("Mail :");
     JTextField jtfhostmail = new JTextField(20);
     //****************************************************
-    public void getjtfhostdetails(){
+    public void getjtfhostdetails(linker link){
         link.addHost(jtfhostname.getText(), jtfhostfirstname.getText(), jtfhostmail.getText());
     }
 
@@ -88,7 +88,7 @@ public class Window extends JFrame {
     JCheckBox jcbatteddeepresent = new JCheckBox();
     //si "checked" string est set à présent.
     //****************************************************
-    public void getjtfattendeedetails(){
+    public void getjtfattendeedetails(linker link){
         link.addAttendees(jtfattendeename.getText(), jtfattendeefirstname.getText(), jtfattendeemail.getText(), presence);
     }
 
@@ -103,7 +103,7 @@ public class Window extends JFrame {
     JLabel action = new JLabel("Action");
     JTextArea actionarea = new JTextArea(10,20);
     //****************************************************
-    public void getjtftopicsdetails(){
+    public void getjtftopicsdetails(linker link){
         link.addTopics(topicarea.getText(), decisionarea.getText(), actionarea.getText());
     }
 
@@ -113,7 +113,7 @@ public class Window extends JFrame {
     //10 ligne : Notesarea
     JTextArea Notesarea = new JTextArea(10,10);
     //****************************************************
-    public void getnotes(){
+    public void getnotes(linker link){
         link.setNotes(Notesarea.getText());
     }
 
@@ -198,13 +198,15 @@ public class Window extends JFrame {
                 createreport.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        getTxtprojectname();
-                        getprojectnamenumber();
-                        getdateofmeeting();
-                        getjtfattendeedetails();
-                        getjtfhostdetails();
-                        getjtftopicsdetails();
-                        getnotes();
+                        linker link = new linker();
+                        getTxtprojectname(link);
+                        getprojectnamenumber(link);
+                        getdateofmeeting(link);
+                        getjtfattendeedetails(link);
+                        getjtfhostdetails(link);
+                        getjtftopicsdetails(link);
+                        getnotes(link);
+                        pageLayout layout = new pageLayout(link);
                     }
                 });
 
