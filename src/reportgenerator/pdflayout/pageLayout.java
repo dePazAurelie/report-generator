@@ -27,7 +27,7 @@ public class pageLayout {
     }
 
 
-    private void addTopics (Document document, linker link) throws DocumentException {
+    private void addTopics(Document document, linker link) throws DocumentException {
         Paragraph empty = new Paragraph();
         addEmptyLine(empty, 1);
         document.add(empty);
@@ -35,7 +35,7 @@ public class pageLayout {
         addLineSeparator(sectionTitle);
         document.add(sectionTitle);
 
-        for (int i = 0 ; i < link.getTopics().size() ; i++) {
+        for (int i = 0; i < link.getTopics().size(); i++) {
             Paragraph topic = new Paragraph();
             topic.add(new Paragraph(link.getTopics().get(i).getTopic(), smallBold));
             topic.add(new Paragraph(link.getTopics().get(i).getDecision(), classic));
@@ -79,7 +79,7 @@ public class pageLayout {
         cell.setRowspan(1);
         table.addCell(cell);
 
-        for (int i = 0 ; i < link.getAttendees().size() ; i++) {
+        for (int i = 0; i < link.getAttendees().size(); i++) {
             cell = new PdfPCell(new Phrase(link.getAttendees().get(i).getFirstName() + " "
                     + link.getAttendees().get(i).getLastName() + "\n" + link.getAttendees().get(i).getMail() + "\n"
                     , classic));
@@ -109,41 +109,41 @@ public class pageLayout {
         //addEmptyLine(header, 1);
 
         Phrase phrase = new Phrase();
-        phrase.add(new Chunk("Host : ",smallBold));
+        phrase.add(new Chunk("Host : ", smallBold));
         phrase.add(new Chunk(link.getHost().getFirstName() + " " + link.getHost().getLastName() + "\n", classic));
         header.add(phrase);
 
         phrase.clear();
-        phrase.add(new Chunk("E-mail : ",smallBold));
+        phrase.add(new Chunk("E-mail : ", smallBold));
         phrase.add(new Chunk(link.getHost().getMail() + "\n", classic));
         header.add(phrase);
 
         phrase.clear();
-        phrase.add(new Chunk("Date : ",smallBold));
+        phrase.add(new Chunk("Date : ", smallBold));
         phrase.add(new Chunk(link.getDate(), classic));
         header.add(phrase);
 
-       // header.add(new Paragraph("Durée : ", classic)); V2
-       // header.add(new Paragraph("Lieu : ", classic)); V2
+        // header.add(new Paragraph("Durée : ", classic)); V2
+        // header.add(new Paragraph("Lieu : ", classic)); V2
         addEmptyLine(header, 1);
         document.add(header);
     }
 
     private void addEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {
-             paragraph.add(new Paragraph(" "));
+            paragraph.add(new Paragraph(" "));
         }
     }
 
     private void addLineSeparator(Paragraph paragraph) {
         LineSeparator line = new LineSeparator();
-        line.setLineColor(new BaseColor( 27, 163, 156, 200));
+        line.setLineColor(new BaseColor(27, 163, 156, 200));
         line.setOffset(-10f);
         paragraph.add(line);
         addEmptyLine(paragraph, 1);
     }
 
-    private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 24, Font.NORMAL, new BaseColor( 27, 163, 156, 255));
+    private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 24, Font.NORMAL, new BaseColor(27, 163, 156, 255));
     private static Font subFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD, BaseColor.DARK_GRAY);
     private static Font smallBold = new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD);
     private static Font classic = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL);

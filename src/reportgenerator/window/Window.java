@@ -11,7 +11,6 @@ import reportgenerator.pdflayout.pageLayout;
 import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -19,10 +18,7 @@ import java.util.Properties;
 
 public class Window extends JFrame {
 
-    String presence= "";
-    ImageIcon imageIcon = new ImageIcon("c:/Users/Aurélie de Paz/Desktop/report-generator/src/reportgenerator/window/Ressources/calming.gif"); // here your Image Path
-    JLabel background=new JLabel(imageIcon);
-
+    boolean presence= false;
     JPanel panel = new JPanel();
 
     //1 ligne = Meeting informations
@@ -31,7 +27,11 @@ public class Window extends JFrame {
 
     //****************************************************
     JTextField txtprojectname = new JTextField(20);
-    public void getTxtprojectname(linker link){
+    //public void getTxtprojectname(linker link){
+    //    link.setProjectName(txtprojectname.getText());
+    //}
+
+    private void getTxtprojectname(linker link) {
         link.setProjectName(txtprojectname.getText());
     }
 
@@ -90,6 +90,7 @@ public class Window extends JFrame {
     //****************************************************
     public void getjtfattendeedetails(linker link){
         link.addAttendees(jtfattendeename.getText(), jtfattendeefirstname.getText(), jtfattendeemail.getText(), presence);
+        link.mergeAttendees();
     }
 
     //7 ligne : ***Recap***
@@ -122,103 +123,101 @@ public class Window extends JFrame {
 
 
     public Window(){
+        this.setTitle("MY MEETING APP");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        panel.setLayout(new MigLayout());
 
-                this.setTitle("MY MEETING APP");
-
-                setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                setLocationRelativeTo(null);
-                add(background);
-                background.setLayout(new FlowLayout());
-
-                panel.setLayout(new MigLayout());
-
-                 //Première ligne = Meeting informations
-                panel.add(ProjectName,"split4");
-                panel.add(txtprojectname, "pushx, growx");
+        //Première ligne = Meeting informations
+        panel.add(ProjectName,"split4");
+        panel.add(txtprojectname, "pushx, growx");
 
 
-                panel.add(number);
-                panel.add(projectnamenumber, "pushx, growx, wrap");
+        panel.add(number);
+        panel.add(projectnamenumber, "pushx, growx, wrap");
 
-                //Deuxieme ligne : meeting date
-                panel.add(meetingdate,"split2");
-                panel.add(datePicker,"wrap");
+        //Deuxieme ligne : meeting date
+        panel.add(meetingdate,"split2");
+        panel.add(datePicker,"wrap");
 
-                //troisieme ligne : ****HOST****
-                panel.add(host, "wrap");
+        //troisieme ligne : ****HOST****
+        panel.add(host, "wrap");
 
-                //quatrieme ligne : host details
-                panel.add(hostname, "split6");
-                panel.add(jtfhostname,"pushx, growx");
-                panel.add(hostfirstname);
-                panel.add(jtfhostfirstname,"pushx, growx");
-                panel.add(hostmail);
-                panel.add(jtfhostmail, "pushx, growx, wrap");
+        //quatrieme ligne : host details
+        panel.add(hostname, "split6");
+        panel.add(jtfhostname,"pushx, growx");
+        panel.add(hostfirstname);
+        panel.add(jtfhostfirstname,"pushx, growx");
+        panel.add(hostmail);
+        panel.add(jtfhostmail, "pushx, growx, wrap");
 
-                //cinquieme ligne : attendees
-                panel.add(attendees, "wrap");
+        //cinquieme ligne : attendees
+        panel.add(attendees, "wrap");
 
-                //sixieme ligne : attendees details
-                panel.add(attendeename, "split8");
-                panel.add(jtfattendeename,"pushx, growx");
-                panel.add(attendeefirstname);
-                panel.add(jtfattendeefirstname,"pushx, growx");
-                panel.add(attendeemail);
-                panel.add(jtfattendeemail, "pushx, growx");
-                panel.add(attendeepresence);
-                panel.add(jcbatteddeepresent, "pushx,wrap");
+        //sixieme ligne : attendees details
+        panel.add(attendeename, "split8");
+        panel.add(jtfattendeename,"pushx, growx");
+        panel.add(attendeefirstname);
+        panel.add(jtfattendeefirstname,"pushx, growx");
+        panel.add(attendeemail);
+        panel.add(jtfattendeemail, "pushx, growx");
+        panel.add(attendeepresence);
+        panel.add(jcbatteddeepresent, "pushx,wrap");
 
-                //7 ligne : ***Recap****
-                panel.add(recap, "wrap");
+        //7 ligne : ***Recap****
+        panel.add(recap, "wrap");
 
-                //8 ligne : ***Recap detail****
-                panel.add(new JScrollPane(topicarea), "split3");
-                topicarea.setText("Meeting topic");
-                panel.add(new JScrollPane(decisionarea));
-                decisionarea.setText("Decision");
-                panel.add(new JScrollPane(actionarea), "wrap");
-                actionarea.setText("Action");
+        //8 ligne : ***Recap detail****
+        panel.add(new JScrollPane(topicarea), "split3");
+        topicarea.setText("Meeting topic");
+        panel.add(new JScrollPane(decisionarea));
+        decisionarea.setText("Decision");
+        panel.add(new JScrollPane(actionarea), "wrap");
+        actionarea.setText("Action");
 
-                //9 ligne : ***Notes****
-                panel.add(Notes,"wrap");
+        //9 ligne : ***Notes****
+        panel.add(Notes,"wrap");
 
-                //10 ligne : ***Notes****
-                panel.add(new JScrollPane(Notesarea), "growx, wrap");
+        //10 ligne : ***Notes****
+        panel.add(new JScrollPane(Notesarea), "growx, wrap");
 
-                 //11 ligne : ***Generate Report****
-                panel.add(createreport, "growx, wrap");
+        //11 ligne : ***Generate Report****
+        panel.add(createreport, "growx, wrap");
 
-                jcbatteddeepresent.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String presence = "présent";
-                    }
-                });
-
-                createreport.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        linker link = new linker();
-                        getTxtprojectname(link);
-                        getprojectnamenumber(link);
-                        getdateofmeeting(link);
-                        getjtfattendeedetails(link);
-                        getjtfhostdetails(link);
-                        getjtftopicsdetails(link);
-                        getnotes(link);
-                        pageLayout layout = new pageLayout(link);
-                    }
-                });
-
-
-                panel.setOpaque(false);
-
-                background.add(panel);
-                pack();
-                setVisible(true);
-
-
-
+        jcbatteddeepresent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (jcbatteddeepresent.isSelected()) {
+                    presence = true;
+                } else {
+                    presence = false;
+                }
             }
-        }
+        });
 
+        createreport.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                linker link = new linker();
+                    getTxtprojectname(link);
+                    getprojectnamenumber(link);
+                    getdateofmeeting(link);
+                    getjtfattendeedetails(link);
+                    getjtfhostdetails(link);
+                    getjtftopicsdetails(link);
+                    getnotes(link);
+                    pageLayout layout = new pageLayout(link);
+            }
+        });
+
+
+        panel.setOpaque(false);
+
+        add(panel);
+        pack();
+        setVisible(true);
+
+
+
+    }
+}
