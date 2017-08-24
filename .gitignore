@@ -71,7 +71,6 @@ local.properties
 .idea/**/workspace.xml
 .idea/**/topics.xml
 .idea/**/tasks.xml
->>>>>>> beta
 .idea/dictionaries
 .idea
 
@@ -216,6 +215,7 @@ buildNumber.properties
 
 # End of https://www.gitignore.io/api/java,macos,windows,eclipse,intellij
 *.pdf
+com.report-generator.iml
 
 .idea/libraries/Maven__com_itextpdf_pdftest_7_0_4.xml
 .idea/libraries/Maven__com_itextpdf_pdftest_7_0_4.xml
@@ -228,10 +228,8 @@ buildNumber.properties
 .idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_3.xml
 .idea/compiler.xml
 .classpath
-com.report-generator.iml
-=======
-com.report-generator.iml
 *.pdf
 com.report-generator.iml
+beta-charles
 src/.DS_Store
 src/reportgenerator/main.java
