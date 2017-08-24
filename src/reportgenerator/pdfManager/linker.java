@@ -57,7 +57,7 @@ public class linker {
         return topics;
     }
 
-    //pas encore fait
+
     public void addTopics(String topic, String desicion, String outcome) {
         topics.add(new topic(topic, desicion, outcome));
     }
