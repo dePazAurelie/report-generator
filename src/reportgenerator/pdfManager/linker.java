@@ -1,18 +1,17 @@
 package reportgenerator.pdfManager;
-
 import java.util.ArrayList;
 
 public class linker {
 
-    private String projectName;
-    private String meetingNumber;
-    private String date;
+    private String projectName = "";
+    private String meetingNumber = "";
+    private String date = "";
     private attendee host;
     private ArrayList <attendee> attendeesPresents = new ArrayList<>();
     private ArrayList <attendee> attendeesExcused = new ArrayList<>();
     private ArrayList <attendee> attendees = new ArrayList<>();
     private ArrayList <topic> topics = new ArrayList<>();
-    private String notes;
+    private String notes = "";
 
     //getters & setters pour faire le lien entre le GUI et l'export. Respecte l'ordre des champs.
     public String getProjectName() {
@@ -53,8 +52,8 @@ public class linker {
 
 
     //Création d'array differents contenant respectivement les présents et les absents.
-    public void addAttendees(String firstName, String lastName, String mail, String status) {
-        if (status == "checked"){
+    public void addAttendees(String firstName, String lastName, String mail, boolean status) {
+        if (status == true){
             attendeesPresents.add(new attendee(firstName, lastName, mail, status));
         }
         else {
@@ -67,18 +66,15 @@ public class linker {
     public void mergeAttendees(){
 
         while (attendeesPresents.size() != attendeesExcused.size()) {
-
             if (attendeesPresents.size() < attendeesExcused.size()) {
-
-                attendeesPresents.add(new attendee("", "", "", ""));
+                attendeesPresents.add(new attendee("", "", "", true));
 
             } else if (attendeesPresents.size() > attendeesExcused.size()) {
-
-                attendeesExcused.add(new attendee("", "", "", ""));
+                attendeesExcused.add(new attendee("", "", "", false));
 
             } else {
                 System.out.print("error on mergeAttendees");
-                        break;
+                break;
             }
         }
 
