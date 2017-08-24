@@ -103,9 +103,9 @@ public class pageLayout {
         number.setAlignment(Element.ALIGN_CENTER);
         header.add(number);
 
-        addEmptyLine(header, 1);
-        header.add(new Paragraph("Sous-titre", subFont));
-        addEmptyLine(header, 1);
+        addEmptyLine(header, 2);
+        //header.add(new Paragraph("Sous-titre", subFont));
+        //addEmptyLine(header, 1);
 
         Phrase phrase = new Phrase();
         phrase.add(new Chunk("Host : ",smallBold));
