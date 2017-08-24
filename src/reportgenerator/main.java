@@ -1,22 +1,15 @@
 package reportgenerator;
-<<<<<<< HEAD
- 
-import reportgenerator.window.Window;
-=======
->>>>>>> origin/beta
 
-import java.io.FileNotFoundException;
+import reportgenerator.pdfManager.linker;
+import reportgenerator.pdflayout.pageLayout;
+import reportgenerator.window.Window;
 
 public class main {
-<<<<<<< HEAD
- 
-    public static void main(String args[]) throws FileNotFoundException {
 
-        Window window = new Window();
-=======
+	public static void main(String[] args) {
 
-    public static void main (String[] args) throws FileNotFoundException {
-
->>>>>>> origin/beta
-    }
+		linker link = new linker();
+		Window window = new Window();
+		pageLayout layout = new pageLayout(link);
+	}
 }
