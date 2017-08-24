@@ -8,8 +8,6 @@ public class main {
 
 	public static void main(String[] args) {
 
-		linker link = new linker();
 		Window window = new Window();
-		pageLayout layout = new pageLayout(link);
 	}
 }

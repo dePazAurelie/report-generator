@@ -1,6 +1,7 @@
 package reportgenerator.window;
 
 import net.miginfocom.swing.MigLayout;
+import org.apache.commons.lang3.StringUtils;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -10,23 +11,23 @@ import reportgenerator.pdfManager.linker;
 import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Properties;
 
 public class Window extends JFrame {
 
+    JPanel mybigpanel = new JPanel();
+
+    JPanel myprojectpanel = new JPanel();
+    JPanel attendeesplusplane = new JPanel();
+    JPanel attendeespanel = new JPanel();
+    JPanel meetingreveiwpluspanel = new JPanel();
+    JPanel myreviewpanel = new JPanel();
+    JPanel noteplusreportcreation = new JPanel();
+
     String presence= "";
     linker link = new linker();
-    ImageIcon imageIcon = new ImageIcon("/Users/charles/Desktop/Formation Epitech/report-generator/src/Ressources/calming.gif"); // here your Image Path
-    JLabel background=new JLabel(imageIcon);
-
-    UtilDateModel model = new UtilDateModel();
-    JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
-    JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
-
-    JPanel panel = new JPanel();
 
     //1 ligne = Meeting informations
     JLabel ProjectName = new JLabel("Project Name: ");
@@ -39,7 +40,7 @@ public class Window extends JFrame {
     }
 
     //****************************************************
-    JTextField projectnamenumber = new JTextField(5);
+    JTextField projectnamenumber = new JTextField(3);
     public void getprojectnamenumber(){
         link.setMeetingNumber(projectnamenumber.getText());
     }
@@ -48,9 +49,14 @@ public class Window extends JFrame {
     JLabel meetingdate = new JLabel("Meeting Date :");
 
     //****************************************************
-    JTextField dateofthemeeting = new JTextField(10);
+    UtilDateModel model = new UtilDateModel();
+    JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
+    JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
+
     public void getdateofmeeting(){
-        link.setDate(dateofthemeeting.getText());
+        String value = datePicker.getModel().getValue().toString();
+        String date = value.substring(0, StringUtils.ordinalIndexOf(value, " ", 3));
+        link.setDate(date);
     }
 
     //3 ligne : ****HOST****
@@ -82,7 +88,7 @@ public class Window extends JFrame {
     JTextField jtfattendeefirstname = new JTextField(10);
 
     JLabel attendeemail = new JLabel("Mail :");
-    JTextField jtfattendeemail = new JTextField(20);
+    JTextField jtfattendeemail = new JTextField(10);
 
     JLabel attendeepresence = new JLabel("Present :");
     JCheckBox jcbatteddeepresent = new JCheckBox();
@@ -91,6 +97,12 @@ public class Window extends JFrame {
     public void getjtfattendeedetails(){
         link.addAttendees(jtfattendeename.getText(), jtfattendeefirstname.getText(), jtfattendeemail.getText(), presence);
     }
+
+    ImageIcon addimage = new ImageIcon("/Users/charles/Desktop/Formation Epitech/report-generator/src/Ressources/add.png");
+    JButton addmoreattendee = new JButton(addimage);
+
+    ImageIcon addimage2 = new ImageIcon("/Users/charles/Desktop/Formation Epitech/report-generator/src/Ressources/add.png");
+    JButton addmortopics = new JButton(addimage2);
 
     //7 ligne : ***Recap***
     JLabel recap = new JLabel("MEETING REVIEW");
@@ -123,70 +135,81 @@ public class Window extends JFrame {
 
     public Window(){
 
-                this.setTitle("MY MEETING APP");
+                setTitle("MY MEETING APP");
+                setSize(1000, 600);
+
 
                 setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 setLocationRelativeTo(null);
-                add(background);
-                background.setLayout(new FlowLayout());
 
-                panel.setLayout(new MigLayout());
+                mybigpanel.setLayout(new MigLayout());
+
+                myprojectpanel.setLayout(new MigLayout());
+                attendeesplusplane.setLayout(new MigLayout());
+                attendeespanel.setLayout(new MigLayout());
+                meetingreveiwpluspanel.setLayout(new MigLayout());
+                myreviewpanel.setLayout(new MigLayout());
+                noteplusreportcreation.setLayout(new MigLayout());
+
 
                  //Première ligne = Meeting informations
-                panel.add(ProjectName,"split4");
-                panel.add(txtprojectname, "pushx, growx");
+        myprojectpanel.add(ProjectName,"split4");
+        myprojectpanel.add(txtprojectname, "pushx");
 
 
-                panel.add(number);
-                panel.add(projectnamenumber, "pushx, growx, wrap");
+        myprojectpanel.add(number);
+        myprojectpanel.add(projectnamenumber, "pushx, wrap");
 
                 //Deuxieme ligne : meeting date
-                panel.add(meetingdate,"split2");
-                panel.add(datePicker,"wrap");
+        myprojectpanel.add(meetingdate,"split2");
+        myprojectpanel.add(datePicker,"wrap");
 
                 //troisieme ligne : ****HOST****
-                panel.add(host, "wrap");
+        myprojectpanel.add(host, "wrap");
 
                 //quatrieme ligne : host details
-                panel.add(hostname, "split6");
-                panel.add(jtfhostname,"pushx, growx");
-                panel.add(hostfirstname);
-                panel.add(jtfhostfirstname,"pushx, growx");
-                panel.add(hostmail);
-                panel.add(jtfhostmail, "pushx, growx, wrap");
+        myprojectpanel.add(hostname, "split6");
+        myprojectpanel.add(jtfhostname,"pushx, growx");
+        myprojectpanel.add(hostfirstname);
+        myprojectpanel.add(jtfhostfirstname,"pushx, growx");
+        myprojectpanel.add(hostmail);
+        myprojectpanel.add(jtfhostmail, "pushx, growx, wrap");
 
                 //cinquieme ligne : attendees
-                panel.add(attendees, "wrap");
+        attendeesplusplane.add(attendees);
+        attendeesplusplane.add(addmoreattendee,"pushx, wrap");
 
                 //sixieme ligne : attendees details
-                panel.add(attendeename, "split8");
-                panel.add(jtfattendeename,"pushx, growx");
-                panel.add(attendeefirstname);
-                panel.add(jtfattendeefirstname,"pushx, growx");
-                panel.add(attendeemail);
-                panel.add(jtfattendeemail, "pushx, growx");
-                panel.add(attendeepresence);
-                panel.add(jcbatteddeepresent, "pushx,wrap");
+        attendeespanel.add(new MyAttendee(), "wrap");
+        attendeespanel.add(new MyAttendee(), "wrap");
+        attendeespanel.add(new MyAttendee(), "wrap");
+        attendeespanel.add(new MyAttendee(), "wrap");
+        attendeespanel.add(new MyAttendee(), "wrap");
+
 
                 //7 ligne : ***Recap****
-                panel.add(recap, "wrap");
+        meetingreveiwpluspanel.add(recap);
+        meetingreveiwpluspanel.add(addmortopics,"pushx, wrap");
 
                 //8 ligne : ***Recap detail****
-                panel.add(new JScrollPane(topicarea), "split3");
-                topicarea.setText("Meeting topic");
-                panel.add(new JScrollPane(decisionarea));
-                decisionarea.setText("Decision");
-                panel.add(new JScrollPane(actionarea), "wrap");
-                actionarea.setText("Action");
+        topicarea.setText("Meeting topic");
+        JScrollPane fortopic = new JScrollPane(topicarea);
+        fortopic.setHorizontalScrollBarPolicy(fortopic.HORIZONTAL_SCROLLBAR_NEVER);
+        myreviewpanel.add(fortopic, "split3");
+        decisionarea.setText("Decision");
+        myreviewpanel.add(new JScrollPane(decisionarea));
+        actionarea.setText("Action");
+        myreviewpanel.add(new JScrollPane(actionarea), "wrap");
 
                 //9 ligne : ***Notes****
-                panel.add(Notes,"wrap");
+        noteplusreportcreation.add(Notes,"wrap");
 
                 //10 ligne : ***Notes****
-                panel.add(new JScrollPane(Notesarea), "growx, wrap");
+        noteplusreportcreation.add(new JScrollPane(Notesarea), "split1, growx, pushx, wrap");
 
                  //11 ligne : ***Generate Report****
-                panel.add(createreport, "growx, wrap");
+        noteplusreportcreation.add(createreport, "growx, wrap");
+        
 
                 jcbatteddeepresent.addActionListener(new ActionListener() {
                     @Override
@@ -208,13 +231,31 @@ public class Window extends JFrame {
                     }
                 });
 
+                addmoreattendee.addActionListener(e -> {
+                    attendeespanel.add(new MyAttendee(), "wrap");
+                });
 
-                panel.setOpaque(false);
+        addmortopics.addActionListener(e -> {
+            myreviewpanel.add(new MyReviewPanel(),"wrap");
+        });
 
-                background.add(panel);
-                pack();
+
+        //CONFIGURATION GéNéRALE DE LA FENETRE
+
+
+        JScrollPane scrollpane = new JScrollPane(mybigpanel);
+        scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        add(scrollpane);
+
+
+        mybigpanel.add(myprojectpanel,"wrap");
+        mybigpanel.add(attendeesplusplane,"wrap");
+        mybigpanel.add(attendeespanel,"wrap");
+        mybigpanel.add(meetingreveiwpluspanel,"wrap");
+        mybigpanel.add(myreviewpanel,"wrap");
+        mybigpanel.add(noteplusreportcreation,"growx, wrap");
+
                 setVisible(true);
-
 
 
             }
