@@ -7,14 +7,12 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import reportgenerator.pdfManager.linker;
-import reportgenerator.pdflayout.pageLayout;
 
 import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.Properties;
 
 public class Window extends JFrame {
@@ -28,8 +26,8 @@ public class Window extends JFrame {
     JPanel myreviewpanel = new JPanel();
     JPanel noteplusreportcreation = new JPanel();
 
-    boolean presence= false;
-    int cmpt = 0;
+    String presence= "";
+    linker link = new linker();
 
     //1 ligne = Meeting informations
     JLabel ProjectName = new JLabel("Project Name: ");
@@ -37,17 +35,13 @@ public class Window extends JFrame {
 
     //****************************************************
     JTextField txtprojectname = new JTextField(20);
-    //public void getTxtprojectname(linker link){
-    //    link.setProjectName(txtprojectname.getText());
-    //}
-
-    private void getTxtprojectname(linker link) {
+    public void getTxtprojectname(){
         link.setProjectName(txtprojectname.getText());
     }
 
     //****************************************************
     JTextField projectnamenumber = new JTextField(3);
-    public void getprojectnamenumber(linker link){
+    public void getprojectnamenumber(){
         link.setMeetingNumber(projectnamenumber.getText());
     }
 
@@ -59,16 +53,10 @@ public class Window extends JFrame {
     JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
     JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
 
-    public void getdateofmeeting(linker link){
+    public void getdateofmeeting(){
         String value = datePicker.getModel().getValue().toString();
         String date = value.substring(0, StringUtils.ordinalIndexOf(value, " ", 3));
-      
-        Object s = datePicker.getModel().getValue();
-        if (s == null) {
-            link.setDate(new Date().toString());
-        } else {
-            link.setDate(date);
-        }
+        link.setDate(date);
     }
 
     //3 ligne : ****HOST****
@@ -85,7 +73,7 @@ public class Window extends JFrame {
     JLabel hostmail = new JLabel("Mail :");
     JTextField jtfhostmail = new JTextField(20);
     //****************************************************
-    public void getjtfhostdetails(linker link){
+    public void getjtfhostdetails(){
         link.addHost(jtfhostname.getText(), jtfhostfirstname.getText(), jtfhostmail.getText());
     }
 
@@ -106,9 +94,8 @@ public class Window extends JFrame {
     JCheckBox jcbatteddeepresent = new JCheckBox();
     //si "checked" string est set à présent.
     //****************************************************
-    public void getjtfattendeedetails(linker link){
+    public void getjtfattendeedetails(){
         link.addAttendees(jtfattendeename.getText(), jtfattendeefirstname.getText(), jtfattendeemail.getText(), presence);
-        link.mergeAttendees();
     }
 
     ImageIcon addimage = new ImageIcon("/Users/charles/Desktop/Formation Epitech/report-generator/src/Ressources/add.png");
@@ -128,7 +115,7 @@ public class Window extends JFrame {
     JLabel action = new JLabel("Action");
     JTextArea actionarea = new JTextArea(10,20);
     //****************************************************
-    public void getjtftopicsdetails(linker link){
+    public void getjtftopicsdetails(){
         link.addTopics(topicarea.getText(), decisionarea.getText(), actionarea.getText());
     }
 
@@ -138,7 +125,7 @@ public class Window extends JFrame {
     //10 ligne : Notesarea
     JTextArea Notesarea = new JTextArea(10,10);
     //****************************************************
-    public void getnotes(linker link){
+    public void getnotes(){
         link.setNotes(Notesarea.getText());
     }
 
@@ -148,22 +135,8 @@ public class Window extends JFrame {
 
     public Window(){
 
-        jcbatteddeepresent.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (jcbatteddeepresent.isSelected()) {
-                    presence = true;
-                } else {
-                    presence = false;
-                }
-            }
-        });
-      
                 setTitle("MY MEETING APP");
-<<<<<<< HEAD
 
-=======
->>>>>>> c0aff9dc9254c691a8c889af30c739efddc6835b
 
                 setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 setLocationRelativeTo(null);
@@ -209,24 +182,12 @@ public class Window extends JFrame {
         attendeesplusplane.add(addmoreattendee,"pushx, wrap");
 
                 //sixieme ligne : attendees details
-<<<<<<< HEAD
         attendeespanel.add(new MyAttendee(), "wrap");
         attendeespanel.add(new MyAttendee(), "wrap");
 
-=======
-        attendeespanel.add(attendeename, "split8");
-        attendeespanel.add(jtfattendeename,"pushx, growx");
-        attendeespanel.add(attendeefirstname);
-        attendeespanel.add(jtfattendeefirstname,"pushx, growx");
-        attendeespanel.add(attendeemail);
-        attendeespanel.add(jtfattendeemail, "pushx, growx");
-        attendeespanel.add(attendeepresence);
-        attendeespanel.add(jcbatteddeepresent, "pushx,wrap");
->>>>>>> c0aff9dc9254c691a8c889af30c739efddc6835b
 
 
-
-        //7 ligne : ***Recap****
+                //7 ligne : ***Recap****
         meetingreveiwpluspanel.add(recap);
         meetingreveiwpluspanel.add(addmortopics,"pushx, wrap");
 
@@ -248,7 +209,6 @@ public class Window extends JFrame {
 
                  //11 ligne : ***Generate Report****
         noteplusreportcreation.add(createreport, "growx, wrap");
-<<<<<<< HEAD
 
 
                 jcbatteddeepresent.addActionListener(new ActionListener() {
@@ -257,26 +217,19 @@ public class Window extends JFrame {
                         String presence = "présent";
                     }
                 });
-=======
->>>>>>> c0aff9dc9254c691a8c889af30c739efddc6835b
 
-        createreport.addActionListener(new ActionListener() {
-            linker link = new linker();
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                getTxtprojectname(link);
-                getprojectnamenumber(link);
-                getdateofmeeting(link);
-                getjtfattendeedetails(link);
-                getjtfhostdetails(link);
-                getjtftopicsdetails(link);
-                getnotes(link);
-
-                if (cmpt == 0) {
-                    pageLayout layout = new pageLayout(link);
-                }
-            }
-        });
+                createreport.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        getTxtprojectname();
+                        getprojectnamenumber();
+                        getdateofmeeting();
+                        getjtfattendeedetails();
+                        getjtfhostdetails();
+                        getjtftopicsdetails();
+                        getnotes();
+                    }
+                });
 
                 addmoreattendee.addActionListener(e -> {
                     attendeespanel.add(new MyAttendee(), "wrap");
@@ -302,7 +255,6 @@ public class Window extends JFrame {
         mybigpanel.add(myreviewpanel,"wrap");
         mybigpanel.add(noteplusreportcreation,"growx, wrap");
 
-<<<<<<< HEAD
                 pack();
                 setVisible(true);
 
@@ -310,9 +262,3 @@ public class Window extends JFrame {
             }
         }
 
-=======
-        setVisible(true);
-        pack();
-    }
-}
->>>>>>> c0aff9dc9254c691a8c889af30c739efddc6835b
