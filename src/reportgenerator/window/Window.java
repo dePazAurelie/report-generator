@@ -136,13 +136,15 @@ public class Window extends JFrame {
     public Window(){
 
                 setTitle("MY MEETING APP");
-                setSize(1000, 600);
 
 
                 setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 setLocationRelativeTo(null);
 
                 mybigpanel.setLayout(new MigLayout());
+        JScrollPane scrollpane = new JScrollPane(mybigpanel);
+        scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        add(scrollpane);
 
                 myprojectpanel.setLayout(new MigLayout());
                 attendeesplusplane.setLayout(new MigLayout());
@@ -182,9 +184,7 @@ public class Window extends JFrame {
                 //sixieme ligne : attendees details
         attendeespanel.add(new MyAttendee(), "wrap");
         attendeespanel.add(new MyAttendee(), "wrap");
-        attendeespanel.add(new MyAttendee(), "wrap");
-        attendeespanel.add(new MyAttendee(), "wrap");
-        attendeespanel.add(new MyAttendee(), "wrap");
+
 
 
                 //7 ligne : ***Recap****
@@ -209,7 +209,7 @@ public class Window extends JFrame {
 
                  //11 ligne : ***Generate Report****
         noteplusreportcreation.add(createreport, "growx, wrap");
-        
+
 
                 jcbatteddeepresent.addActionListener(new ActionListener() {
                     @Override
@@ -233,19 +233,19 @@ public class Window extends JFrame {
 
                 addmoreattendee.addActionListener(e -> {
                     attendeespanel.add(new MyAttendee(), "wrap");
+                    setVisible(true);
                 });
 
         addmortopics.addActionListener(e -> {
             myreviewpanel.add(new MyReviewPanel(),"wrap");
+            setVisible(true);
         });
 
 
         //CONFIGURATION GéNéRALE DE LA FENETRE
 
 
-        JScrollPane scrollpane = new JScrollPane(mybigpanel);
-        scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        add(scrollpane);
+
 
 
         mybigpanel.add(myprojectpanel,"wrap");
@@ -255,6 +255,7 @@ public class Window extends JFrame {
         mybigpanel.add(myreviewpanel,"wrap");
         mybigpanel.add(noteplusreportcreation,"growx, wrap");
 
+                pack();
                 setVisible(true);
 
 
