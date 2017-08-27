@@ -161,7 +161,7 @@ public class PageLayout {
             document.close();
             Desktop.getDesktop().open(new File("test.pdf"));
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("test.pdf est déjà ouvert. Fermez-le et recommencez.");
         }
     }
 }

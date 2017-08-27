@@ -14,32 +14,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
 public class Window extends JFrame {
-
-    private JPanel mybigpanel = new JPanel();
-
-    private JPanel myprojectpanel = new JPanel();
-    private JPanel attendeesplusplane = new JPanel();
+    private ArrayList<MyAttendee> myAttendees = new ArrayList<>();
+    private ArrayList<MyReviewPanel> myTopics = new ArrayList<>();
     private JPanel attendeespanel = new JPanel();
-    private JPanel meetingreveiwpluspanel = new JPanel();
     private JPanel myreviewpanel = new JPanel();
-    private JPanel noteplusreportcreation = new JPanel();
 
-    private boolean presence = false;
-
-    //1 ligne = Meeting informations
-    private JLabel ProjectName = new JLabel("Project Name: ");
-    private JLabel number = new JLabel("Project number: ");
 
     //****************************************************
     private JTextField txtprojectname = new JTextField("",20);
-
     private void getTxtprojectname(Linker link) {
         link.setProjectName(txtprojectname.getText());
     }
+
 
     //****************************************************
     private JTextField projectnamenumber = new JTextField("",3);
@@ -47,8 +38,6 @@ public class Window extends JFrame {
         link.setMeetingNumber(projectnamenumber.getText());
     }
 
-    //2 ligne : meeting date
-    private JLabel meetingdate = new JLabel("Meeting Date :");
 
     //****************************************************
     private UtilDateModel model = new UtilDateModel(new Date());
@@ -61,171 +50,148 @@ public class Window extends JFrame {
         link.setDate(date);
     }
 
-    //3 ligne : ****HOST****
-    private JLabel host = new JLabel("HOST");
 
-    //4 ligne : host details
-    private JLabel hostname = new JLabel("Name:");
+    //****************************************************************
     private JTextField jtfhostname = new JTextField("",10);
-
-
-    private JLabel hostfirstname = new JLabel("Firstname :");
     private JTextField jtfhostfirstname = new JTextField("",10);
-
-    private JLabel hostmail = new JLabel("Mail :");
     private JTextField jtfhostmail = new JTextField("",20);
-
-    //****************************************************
     private void getjtfhostdetails(Linker link){
         link.addHost(jtfhostname.getText(), jtfhostfirstname.getText(), jtfhostmail.getText());
     }
 
-    //5 ligne : **ATTENDEES**
-    private JLabel attendees = new JLabel("ATTENDEES");
 
-    //6 ligne : attendees details
-    private JLabel attendeename = new JLabel("Name:");
-    private JTextField jtfattendeename = new JTextField("",10);
-
-    private JLabel attendeefirstname = new JLabel("Firstname :");
-    private JTextField jtfattendeefirstname = new JTextField("",10);
-
-    private JLabel attendeemail = new JLabel("Mail :");
-    private JTextField jtfattendeemail = new JTextField("",10);
-
-    private JLabel attendeepresence = new JLabel("Present :");
-    private JCheckBox jcbatteddeepresent = new JCheckBox();
-
-    //****************************************************
+    //6 ligne : attendees details voir classe MyAttendees
     private void getjtfattendeedetails(Linker link){
-        link.addAttendees(jtfattendeename.getText(), jtfattendeefirstname.getText(), jtfattendeemail.getText(), presence);
+        for (MyAttendee myAttendee : myAttendees) {
+            link.addAttendees(myAttendee.getJtfattendeename(), myAttendee.getJtfattendeefirstname(),
+                    myAttendee.getJtfattendeemail(), myAttendee.isPresence());
+        }
         link.mergeAttendees();
+        myAttendees.clear();
     }
 
-    private ImageIcon addimage = new ImageIcon("/Users/charles/Desktop/Formation Epitech/report-generator/src/Ressources/add.png");
-    private JButton addmoreattendee = new JButton(addimage);
-
-    private ImageIcon addimage2 = new ImageIcon("/Users/charles/Desktop/Formation Epitech/report-generator/src/Ressources/add.png");
-    private JButton addmortopics = new JButton(addimage2);
-
-    //7 ligne : ***Recap***
-    private JLabel recap = new JLabel("MEETING REVIEW");
-
-    //8 ligne : Recap detail
-    private JLabel topic = new JLabel("Meeting Topic");
-    private JTextArea topicarea = new JTextArea("",10,20);
-    private JLabel decision = new JLabel("Decision");
-    private JTextArea decisionarea = new JTextArea("",10,20);
-    private JLabel action = new JLabel("Action");
-    private JTextArea actionarea = new JTextArea("",10,20);
-
-    //****************************************************
+    //get topics
     private void getjtftopicsdetails(Linker link){
-        link.addTopics(topicarea.getText(), decisionarea.getText(), actionarea.getText());
+        for (MyReviewPanel myTopic : myTopics) {
+            link.addTopics(myTopic.getTopicarea(), myTopic.getDecisionarea(),
+                    myTopic.getActionarea());
+        }
     }
 
-    //9 ligne : Notes
-    private JLabel Notes = new JLabel("Notes");
 
     //10 ligne : Notesarea
     private JTextArea Notesarea = new JTextArea("",10,10);
-    //****************************************************
     private void getnotes(Linker link){
         link.setNotes(Notesarea.getText());
     }
 
-    //11 boutton : Generate report
-    private JButton createreport = new JButton("CREATE REPORT");
 
-
+    //Constructeur
     public Window(){
         setTitle("MY MEETING APP");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        // Les panels
+        JPanel mybigpanel = new JPanel();
         mybigpanel.setLayout(new MigLayout());
+
+        JPanel myprojectpanel = new JPanel();
         myprojectpanel.setLayout(new MigLayout());
+
+        JPanel attendeesplusplane = new JPanel();
         attendeesplusplane.setLayout(new MigLayout());
+
         attendeespanel.setLayout(new MigLayout());
+
+        JPanel meetingreveiwpluspanel = new JPanel();
         meetingreveiwpluspanel.setLayout(new MigLayout());
+
         myreviewpanel.setLayout(new MigLayout());
+
+        JPanel noteplusreportcreation = new JPanel();
         noteplusreportcreation.setLayout(new MigLayout());
 
+
         //Première ligne = Meeting informations
-        myprojectpanel.add(ProjectName,"split4");
+        JLabel projectName = new JLabel("Project Name: ");
+        myprojectpanel.add(projectName,"split4");
         myprojectpanel.add(txtprojectname, "pushx");
+
+        JLabel number = new JLabel("Project number: ");
         myprojectpanel.add(number);
         myprojectpanel.add(projectnamenumber, "pushx, wrap");
 
+
         //Deuxieme ligne : meeting date
+        JLabel meetingdate = new JLabel("Meeting Date :");
         myprojectpanel.add(meetingdate,"split2");
         myprojectpanel.add(datePicker,"wrap");
 
+
         //troisieme ligne : ****HOST****
+        JLabel host = new JLabel("HOST");
         myprojectpanel.add(host, "wrap");
 
+
         //quatrieme ligne : host details
+        JLabel hostname = new JLabel("Name:");
         myprojectpanel.add(hostname, "split6");
         myprojectpanel.add(jtfhostname,"pushx, growx");
+        JLabel hostfirstname = new JLabel("Firstname :");
         myprojectpanel.add(hostfirstname);
         myprojectpanel.add(jtfhostfirstname,"pushx, growx");
+        JLabel hostmail = new JLabel("Mail :");
         myprojectpanel.add(hostmail);
         myprojectpanel.add(jtfhostmail, "pushx, growx, wrap");
 
+
         //cinquieme ligne : attendees
+        JLabel attendees = new JLabel("ATTENDEES");
         attendeesplusplane.add(attendees);
+        ImageIcon addimage = new ImageIcon("add.png");
+        JButton addmoreattendee = new JButton(addimage);
         attendeesplusplane.add(addmoreattendee,"pushx, wrap");
 
+
         //sixieme ligne : attendees details
-        attendeespanel.add(new MyAttendee(), "wrap");
-        attendeespanel.add(new MyAttendee(), "wrap");
-        attendeespanel.add(attendeename, "split8");
-        attendeespanel.add(jtfattendeename,"pushx, growx");
-        attendeespanel.add(attendeefirstname);
-        attendeespanel.add(jtfattendeefirstname,"pushx, growx");
-        attendeespanel.add(attendeemail);
-        attendeespanel.add(jtfattendeemail, "pushx, growx");
-        attendeespanel.add(attendeepresence);
-        attendeespanel.add(jcbatteddeepresent, "pushx,wrap");
+        MyAttendee myAttendee = new MyAttendee();
+        attendeespanel.add(myAttendee, "wrap");
+        myAttendees.add(myAttendee);
+
 
         //7 ligne : ***Recap****
+        JLabel recap = new JLabel("MEETING REVIEW");
         meetingreveiwpluspanel.add(recap);
+        ImageIcon addimage2 = new ImageIcon("add.png");
+        JButton addmortopics = new JButton(addimage2);
         meetingreveiwpluspanel.add(addmortopics,"pushx, wrap");
 
+
         //8 ligne : ***Recap detail****
-        topicarea.setText("Meeting topic");
-        JScrollPane fortopic = new JScrollPane(topicarea);
-        fortopic.setHorizontalScrollBarPolicy(fortopic.HORIZONTAL_SCROLLBAR_NEVER);
-        myreviewpanel.add(fortopic, "split3");
-        decisionarea.setText("Decision");
-        myreviewpanel.add(new JScrollPane(decisionarea));
-        actionarea.setText("Action");
-        myreviewpanel.add(new JScrollPane(actionarea), "wrap");
+        MyReviewPanel myReviewPanel = new MyReviewPanel();
+        myreviewpanel.add(myReviewPanel, "wrap");
+        myTopics.add(myReviewPanel);
+
 
         //9 ligne : ***Notes****
-        noteplusreportcreation.add(Notes,"wrap");
+        JLabel notes = new JLabel("Notes");
+        noteplusreportcreation.add(notes,"wrap");
+
 
         //10 ligne : ***Notes****
         noteplusreportcreation.add(new JScrollPane(Notesarea), "split1, growx, pushx, wrap");
 
+
         //11 ligne : ***Generate Report****
+        JButton createreport = new JButton("CREATE REPORT");
         noteplusreportcreation.add(createreport, "growx, wrap");
 
-        jcbatteddeepresent.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (jcbatteddeepresent.isSelected()) {
-                    presence = true;
-                } else {
-                    presence = false;
-                }
-            }
-        });
 
         createreport.addActionListener(new ActionListener() {
-            Linker link = new Linker();
             @Override
             public void actionPerformed(ActionEvent e) {
+                Linker link = new Linker();
                 getTxtprojectname(link);
                 getprojectnamenumber(link);
                 getdateofmeeting(link);
@@ -238,13 +204,23 @@ public class Window extends JFrame {
             }
         });
 
+
         addmoreattendee.addActionListener(e -> {
-            attendeespanel.add(new MyAttendee(), "wrap");
+            MyAttendee myNextAttendee = new MyAttendee();
+            attendeespanel.add(myNextAttendee, "wrap");
+            myAttendees.add(myNextAttendee);
+            setVisible(true);
         });
 
+
         addmortopics.addActionListener(e -> {
-            myreviewpanel.add(new MyReviewPanel(),"wrap");
+            MyReviewPanel myNextReviewPanel = new MyReviewPanel();
+            myreviewpanel.add(myNextReviewPanel,"wrap");
+            myTopics.add(myNextReviewPanel);
+            setVisible(true);
         });
+
+
 
         //CONFIGURATION GéNéRALE DE LA FENETRE
         JScrollPane scrollpane = new JScrollPane(mybigpanel);
