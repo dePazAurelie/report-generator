@@ -1,4 +1,5 @@
 package reportgenerator.pdflayout;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import reportgenerator.pdfManager.linker;
 
@@ -9,6 +10,9 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import java.awt.*;
+import java.io.File;
 import java.io.FileOutputStream;
 import static com.itextpdf.text.Rectangle.NO_BORDER;
 
@@ -151,12 +155,12 @@ public class pageLayout {
 
     public pageLayout(linker link) {
         try {
-            String FILE = "c:/Users/Aurélie de Paz/Desktop/report-generator/test.pdf";
             Document document = new Document(PageSize.A4);
-            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            PdfWriter.getInstance(document, new FileOutputStream("test.pdf"));
             document.open();
             document = initDocument(document, link);
             document.close();
+            Desktop.getDesktop().open(new File("test.pdf"));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,28 +7,17 @@ public class attendee {
     private String mail;
     private boolean presence = false;
 
-    public attendee(String firstName, String lastName, String mail, String presence) {
+    public attendee(String firstName, String lastName, String mail, boolean presence) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
-        this.presence = presenceCheck(presence);
+        this.presence = presence;
     }
 
     public attendee(String firstName, String lastName, String mail){
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
-    }
-
-    //Créer un boolean à partir du string pour savoir si les personnes étaient présentes ou pas
-    public boolean presenceCheck(String arg){
-        if(arg == "checked"){
-            presence = true;
-        }
-        else {
-            presence = false;
-        }
-        return (presence = false);
     }
 
     public String getFirstName() {

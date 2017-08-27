@@ -4,20 +4,19 @@ import javax.swing.*;
 
 public class MyReviewPanel extends JPanel{
 
-    MyReviewPanel myreviewpanel;
-
-    int myreviewpanelnumber = 0;
-
+    private static int myreviewpanelnumber = 0;
 
     public MyReviewPanel() {
+        MyReviewPanel myreviewpanel = this;
 
-        myreviewpanel = this;
         JLabel topic = new JLabel("Meeting Topic");
-        JTextArea topicarea = new JTextArea(10,20);
+        JTextArea topicarea = new JTextArea("",10,20);
+
         JLabel decision = new JLabel("Decision");
-        JTextArea decisionarea = new JTextArea(10,20);
+        JTextArea decisionarea = new JTextArea("",10,20);
+
         JLabel action = new JLabel("Action");
-        JTextArea actionarea = new JTextArea(10,20);
+        JTextArea actionarea = new JTextArea("",10,20);
 
         topicarea.setText("Meeting topic");
         add(new JScrollPane(topicarea), "split3");
@@ -27,7 +26,5 @@ public class MyReviewPanel extends JPanel{
         add(new JScrollPane(actionarea), "wrap");
 
         myreviewpanelnumber++;
-
     }
-
 }
