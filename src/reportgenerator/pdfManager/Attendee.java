@@ -1,20 +1,20 @@
 package reportgenerator.pdfManager;
 
-public class attendee {
+public class Attendee {
 
     private String firstName;
     private String lastName;
     private String mail;
     private boolean presence = false;
 
-    public attendee(String firstName, String lastName, String mail, boolean presence) {
+    public Attendee(String firstName, String lastName, String mail, boolean presence) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
         this.presence = presence;
     }
 
-    public attendee(String firstName, String lastName, String mail){
+    public Attendee(String firstName, String lastName, String mail){
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;

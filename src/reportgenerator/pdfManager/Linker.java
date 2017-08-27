@@ -1,17 +1,17 @@
 package reportgenerator.pdfManager;
 import java.util.ArrayList;
 
-public class linker {
+public class Linker {
 
-    private String projectName = "";
-    private String meetingNumber = "";
-    private String date = "";
-    private attendee host;
-    private ArrayList <attendee> attendeesPresents = new ArrayList<>();
-    private ArrayList <attendee> attendeesExcused = new ArrayList<>();
-    private ArrayList <attendee> attendees = new ArrayList<>();
-    private ArrayList <topic> topics = new ArrayList<>();
-    private String notes = "";
+    private String projectName;
+    private String meetingNumber;
+    private String date;
+    private Attendee host;
+    private ArrayList <Attendee> attendeesPresents = new ArrayList<>();
+    private ArrayList <Attendee> attendeesExcused = new ArrayList<>();
+    private ArrayList <Attendee> attendees = new ArrayList<>();
+    private ArrayList <Topic> topics = new ArrayList<>();
+    private String notes;
 
     //getters & setters pour faire le lien entre le GUI et l'export. Respecte l'ordre des champs.
     public String getProjectName() {
@@ -36,18 +36,17 @@ public class linker {
 
     public void setDate(String date) {
         this.date = date;
-        System.out.println(date);
     }
 
-    public attendee getHost() {
+    public Attendee getHost() {
         return host;
     }
 
     public void addHost(String firstName, String lastName, String mail) {
-        this.host = new attendee(firstName, lastName, mail);
+        this.host = new Attendee(firstName, lastName, mail);
     }
 
-    public ArrayList<attendee> getAttendees() {
+    public ArrayList<Attendee> getAttendees() {
         return attendees;
     }
 
@@ -55,10 +54,10 @@ public class linker {
     //Création d'array differents contenant respectivement les présents et les absents.
     public void addAttendees(String firstName, String lastName, String mail, boolean status) {
         if (status == true){
-            attendeesPresents.add(new attendee(firstName, lastName, mail, status));
+            attendeesPresents.add(new Attendee(firstName, lastName, mail, status));
         }
         else {
-            attendeesExcused.add(new attendee(firstName, lastName, mail, status));
+            attendeesExcused.add(new Attendee(firstName, lastName, mail, status));
         }
     }
 
@@ -68,10 +67,10 @@ public class linker {
 
         while (attendeesPresents.size() != attendeesExcused.size()) {
             if (attendeesPresents.size() < attendeesExcused.size()) {
-                attendeesPresents.add(new attendee("", "", "", true));
+                attendeesPresents.add(new Attendee("", "", "", true));
 
             } else if (attendeesPresents.size() > attendeesExcused.size()) {
-                attendeesExcused.add(new attendee("", "", "", false));
+                attendeesExcused.add(new Attendee("", "", "", false));
 
             } else {
                 System.out.print("error on mergeAttendees");
@@ -87,13 +86,13 @@ public class linker {
         }
     }
 
-    public ArrayList<topic> getTopics() {
+    public ArrayList<Topic> getTopics() {
         return topics;
     }
 
 
     public void addTopics(String topic, String desicion, String outcome) {
-        topics.add(new topic(topic, desicion, outcome));
+        topics.add(new Topic(topic, desicion, outcome));
     }
 
     public String getNotes() {

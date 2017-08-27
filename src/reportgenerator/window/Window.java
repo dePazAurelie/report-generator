@@ -6,8 +6,8 @@ import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-import reportgenerator.pdfManager.linker;
-import reportgenerator.pdflayout.pageLayout;
+import reportgenerator.pdfManager.Linker;
+import reportgenerator.pdfLayout.PageLayout;
 
 import javax.swing.*;
 import javax.swing.JFrame;
@@ -37,13 +37,13 @@ public class Window extends JFrame {
     //****************************************************
     private JTextField txtprojectname = new JTextField("",20);
 
-    private void getTxtprojectname(linker link) {
+    private void getTxtprojectname(Linker link) {
         link.setProjectName(txtprojectname.getText());
     }
 
     //****************************************************
     private JTextField projectnamenumber = new JTextField("",3);
-    private void getprojectnamenumber(linker link){
+    private void getprojectnamenumber(Linker link){
         link.setMeetingNumber(projectnamenumber.getText());
     }
 
@@ -55,7 +55,7 @@ public class Window extends JFrame {
     private JDatePanelImpl datePanel = new JDatePanelImpl(model, new Properties());
     private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
 
-    private void getdateofmeeting(linker link){
+    private void getdateofmeeting(Linker link){
         String value = datePicker.getModel().getValue().toString();
         String date = value.substring(0, StringUtils.ordinalIndexOf(value, " ", 3));
         link.setDate(date);
@@ -76,7 +76,7 @@ public class Window extends JFrame {
     private JTextField jtfhostmail = new JTextField("",20);
 
     //****************************************************
-    private void getjtfhostdetails(linker link){
+    private void getjtfhostdetails(Linker link){
         link.addHost(jtfhostname.getText(), jtfhostfirstname.getText(), jtfhostmail.getText());
     }
 
@@ -97,7 +97,7 @@ public class Window extends JFrame {
     private JCheckBox jcbatteddeepresent = new JCheckBox();
 
     //****************************************************
-    private void getjtfattendeedetails(linker link){
+    private void getjtfattendeedetails(Linker link){
         link.addAttendees(jtfattendeename.getText(), jtfattendeefirstname.getText(), jtfattendeemail.getText(), presence);
         link.mergeAttendees();
     }
@@ -120,7 +120,7 @@ public class Window extends JFrame {
     private JTextArea actionarea = new JTextArea("",10,20);
 
     //****************************************************
-    private void getjtftopicsdetails(linker link){
+    private void getjtftopicsdetails(Linker link){
         link.addTopics(topicarea.getText(), decisionarea.getText(), actionarea.getText());
     }
 
@@ -130,7 +130,7 @@ public class Window extends JFrame {
     //10 ligne : Notesarea
     private JTextArea Notesarea = new JTextArea("",10,10);
     //****************************************************
-    private void getnotes(linker link){
+    private void getnotes(Linker link){
         link.setNotes(Notesarea.getText());
     }
 
@@ -223,7 +223,7 @@ public class Window extends JFrame {
         });
 
         createreport.addActionListener(new ActionListener() {
-            linker link = new linker();
+            Linker link = new Linker();
             @Override
             public void actionPerformed(ActionEvent e) {
                 getTxtprojectname(link);
@@ -234,7 +234,7 @@ public class Window extends JFrame {
                 getjtftopicsdetails(link);
                 getnotes(link);
 
-                pageLayout layout = new pageLayout(link);
+                PageLayout layout = new PageLayout(link);
             }
         });
 

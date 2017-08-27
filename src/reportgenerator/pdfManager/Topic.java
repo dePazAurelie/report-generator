@@ -1,12 +1,12 @@
 package reportgenerator.pdfManager;
 
-public class topic {
+public class Topic {
 
     private String topic;
     private String decision;
     private String outcome;
 
-    public topic(String topic, String decision, String outcome) {
+    public Topic(String topic, String decision, String outcome) {
         this.topic = topic;
         this.decision = decision;
         this.outcome = outcome;

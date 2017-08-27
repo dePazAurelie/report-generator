@@ -1,7 +1,6 @@
-package reportgenerator.pdflayout;
-import com.itextpdf.text.Rectangle;
+package reportgenerator.pdfLayout;
 import com.itextpdf.text.pdf.draw.LineSeparator;
-import reportgenerator.pdfManager.linker;
+import reportgenerator.pdfManager.Linker;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.Document;
@@ -16,9 +15,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import static com.itextpdf.text.Rectangle.NO_BORDER;
 
-public class pageLayout {
+public class PageLayout {
 
-    private Document initDocument(Document document, linker link) {
+    private Document initDocument(Document document, Linker link) {
         try {
             addTitlePage(document, link);
             addPeople(document, link);
@@ -31,7 +30,7 @@ public class pageLayout {
     }
 
 
-    private void addTopics (Document document, linker link) throws DocumentException {
+    private void addTopics (Document document, Linker link) throws DocumentException {
         Paragraph empty = new Paragraph();
         addEmptyLine(empty, 1);
         document.add(empty);
@@ -49,7 +48,7 @@ public class pageLayout {
         }
     }
 
-    private void addNotes(Document document, linker link) throws DocumentException {
+    private void addNotes(Document document, Linker link) throws DocumentException {
         Paragraph empty = new Paragraph();
         addEmptyLine(empty, 1);
         Paragraph sectionTitle = new Paragraph("Notes :", subFont);
@@ -60,7 +59,7 @@ public class pageLayout {
         document.add(notes);
     }
 
-    private void addPeople(Document document, linker link) throws DocumentException {
+    private void addPeople(Document document, Linker link) throws DocumentException {
 
         Paragraph sectionTitle = new Paragraph("Attendees :", subFont);
         addLineSeparator(sectionTitle);
@@ -96,7 +95,7 @@ public class pageLayout {
         document.add(table);
     }
 
-    private void addTitlePage(Document document, linker link) throws DocumentException {
+    private void addTitlePage(Document document, Linker link) throws DocumentException {
         Paragraph header = new Paragraph();
 
         Paragraph title = new Paragraph(link.getProjectName(), titleFont);
@@ -153,7 +152,7 @@ public class pageLayout {
     private static Font classicRed = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.RED);
 
 
-    public pageLayout(linker link) {
+    public PageLayout(Linker link) {
         try {
             Document document = new Document(PageSize.A4);
             PdfWriter.getInstance(document, new FileOutputStream("test.pdf"));
